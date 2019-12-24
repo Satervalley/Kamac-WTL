@@ -10,7 +10,6 @@
 *.pch
 *.pdb
 *.tlog
-*.exe
 *.vcxproj
 *.filters
 *.aps
@@ -18,3 +17,6 @@
 *.res
 RCa00960
 .vs/Kamac-WTL/v16/.suo
+.vs/
+debug/
+release/

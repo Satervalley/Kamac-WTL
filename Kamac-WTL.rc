@@ -53,35 +53,42 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\Kamac-WTL.ico"
+IDR_MAINFRAME           ICON                    "res\\Kamac.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG  0, 0, 187, 102
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_CPPMain DIALOGEX 0, 0, 311, 135
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "Main"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST_MAIN,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,297,83
+    LTEXT           "Static",IDC_STATIC_INFO,7,95,297,33
+END
+
+IDD_CPPOptions DIALOGEX 0, 0, 311, 94
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Options"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Monitor diagonal size(0.1 mm)",IDC_STATIC,7,14,101,8
+    EDITTEXT        IDC_EDIT_MONITORSIZE,116,11,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Eg: a 14 inch monitor is about 3556(0.1 mm), a 15.6 inch monitor is about 3962(0.1 mm)",IDC_STATIC,161,7,143,22
+    CONTROL         "Start with OS",IDC_CHECK_STARTWITHOS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,39,60,10
+END
+
+IDD_CPPAbout DIALOGEX 0, 0, 311, 135
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_CAPTION | WS_SYSMENU
 CAPTION "About"
-FONT 9, "Segoe UI"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,130,81,50,14
-    CTEXT           "Kamac-WTL Application v1.0\n\n(c) Copyright 2019",IDC_STATIC,25,57,78,
-                    32
-    ICON            IDR_MAINFRAME,IDC_STATIC,55,26,18,20
-    GROUPBOX        "",IDC_STATIC,7,7,115,88
+    LTEXT           "Static",IDC_STATIC_CONTENT,7,39,297,89
+    CONTROL         IDB_BITMAP1,IDC_STATIC2,"Static",SS_BITMAP | SS_CENTERIMAGE,117,7,75,28
 END
-
-IDD_MAINDLG DIALOG  0, 0, 187, 98
-STYLE WS_MINIMIZEBOX | WS_CAPTION | WS_SYSMENU
-CAPTION "Kamac-WTL"
-FONT 9, "Segoe UI"
-BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,130,24,50,14
-    PUSHBUTTON      "&About",ID_APP_ABOUT,130,77,50,14
-END
-
 
 
 
@@ -91,22 +98,30 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
-    IDD_ABOUTBOX, DIALOG
+    IDD_CPPMain, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 180
+        RIGHTMARGIN, 304
         TOPMARGIN, 7
-        BOTTOMMARGIN, 95
+        BOTTOMMARGIN, 128
     END
 
-    IDD_MAINDLG, DIALOG
+    IDD_CPPOptions, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 180
+        RIGHTMARGIN, 304
         TOPMARGIN, 7
-        BOTTOMMARGIN, 91
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_CPPAbout, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 128
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -173,6 +188,32 @@ BEGIN
         VALUE "Translation", 0x0409, 0x04B0
     END
 END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\Kamac.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_TRAY MENU
+BEGIN
+    POPUP "Tray"
+    BEGIN
+        MENUITEM "&Main",                       ID_TRAY_MAIN
+        MENUITEM "&Options",                    ID_TRAY_OPTIONS
+        MENUITEM "&About",                      ID_TRAY_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_TRAY_EXIT
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

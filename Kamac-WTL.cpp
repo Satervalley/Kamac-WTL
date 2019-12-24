@@ -9,8 +9,8 @@
 
 #include "resource.h"
 
-#include "aboutdlg.h"
-#include "MainDlg.h"
+//#include "aboutdlg.h"
+//#include "MainDlg.h"
 
 CAppModule _Module;
 
@@ -19,15 +19,15 @@ int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
 	CMessageLoop theLoop;
 	_Module.AddMessageLoop(&theLoop);
 
-	CMainDlg dlgMain;
+	//CMainDlg dlgMain;
 
-	if(dlgMain.Create(NULL) == NULL)
-	{
-		ATLTRACE(_T("Main dialog creation failed!\n"));
-		return 0;
-	}
+	//if(dlgMain.Create(NULL) == NULL)
+	//{
+	//	ATLTRACE(_T("Main dialog creation failed!\n"));
+	//	return 0;
+	//}
 
-	dlgMain.ShowWindow(nCmdShow);
+	//dlgMain.ShowWindow(nCmdShow);
 
 	int nRet = theLoop.Run();
 

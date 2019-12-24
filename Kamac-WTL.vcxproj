@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{4EE204C9-8761-4AF7-8AD1-E0EB1CA9738D}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -67,12 +68,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>Kamac</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>Kamac</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -108,6 +111,12 @@
       <TypeLibraryName>$(IntDir)/Kamac-WTL.tlb</TypeLibraryName>
       <DllDataFileName />
     </Midl>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)AutoVersion\BeforeBuild "$(ProjectDir)$(ProjectName)_av" "$(ProjectDir)$(ProjectName)_av"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)AutoVersion\AfterBuild "$(ProjectDir)$(ProjectName)_av"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -168,6 +177,12 @@
       <TypeLibraryName>$(IntDir)/Kamac-WTL.tlb</TypeLibraryName>
       <DllDataFileName />
     </Midl>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)AutoVersion\BeforeBuild "$(ProjectDir)$(ProjectName)_av" "$(ProjectDir)$(ProjectName)_av"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)AutoVersion\AfterBuild "$(ProjectDir)$(ProjectName)_av"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -198,7 +213,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CNFStatic.cpp" />
+    <ClCompile Include="CPPMain.cpp" />
     <ClCompile Include="Kamac-WTL.cpp" />
+    <ClCompile Include="Registry.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -208,7 +226,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="CKamacOptions.h" />
+    <ClInclude Include="CKMData.h" />
+    <ClInclude Include="CNFStatic.h" />
+    <ClInclude Include="CPPMain.h" />
     <ClInclude Include="MainDlg.h" />
+    <ClInclude Include="Registry.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
